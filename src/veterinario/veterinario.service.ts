@@ -21,7 +21,14 @@ export class VeterinarioService {
     createVeterinarioDto: CreateVeterinarioDto,
   ): Promise<Veterinario> {
     const veterinario = await this.prisma.cliente.create({
-      data: createVeterinarioDto,
+      data:{
+        nomedoproduto: createVeterinarioDto.nomedoproduto,
+        quantidade: createVeterinarioDto.quantidade,
+        preco: createVeterinarioDto.preco,
+        cliente: createVeterinarioDto.cliente,
+
+
+      } 
     });
     return this.mapToEntity(veterinario);
   }
